@@ -1,4 +1,6 @@
-﻿Console.WriteLine("Bem vindo a lista de nomes!");
+﻿string[] nomes = new string[10];
+
+Console.WriteLine("Bem vindo a lista de nomes!");
 
 //indicando as opções do menu 
 Console.WriteLine("Escolha: " +
@@ -13,6 +15,7 @@ switch (opcao)
 {
     case 1:
         Console.WriteLine("Essa é o opção 1");
+        InserirNome(nomes);
         break;
         case 2:
         Console.WriteLine("essa é o opção 2");
@@ -29,4 +32,15 @@ switch (opcao)
     default:
         Console.WriteLine("opção inválida, tente novamente!");
         break;
+}
+
+//função inserir nome
+static void InserirNome(string[] nomes)
+{
+    Console.WriteLine("Informe o nome a ser inserido");
+    string nome = Console.ReadLine();
+    for (int i = 0; i < nomes.Length; i++)
+    {
+        nomes[i] = nome;
+    }
 }
