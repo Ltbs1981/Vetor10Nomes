@@ -43,10 +43,9 @@ static void InserirNome(string[] nomes)
 {
     Console.WriteLine("Informe o nome a ser inserido");
     string nome = Console.ReadLine();
-    for (int i = 0; i < nomes.Length; i++)
-    {
-        nomes[i] = nome;
-    }
+    
+        nomes [0] += nome;
+    
 }
 
 //função listar nomes
