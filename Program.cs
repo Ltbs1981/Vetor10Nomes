@@ -26,7 +26,8 @@ while (opcao != 5)
             ListarNomes(nomes);
             break;
         case 4:
-            Console.WriteLine("Essa é opção 4");
+            //Console.WriteLine("opção 4");
+            NomesOrdemAlfabetica(nomes);
             break;
         case 5:
             Console.WriteLine("Obrigado!");
@@ -92,3 +93,36 @@ static void ListarNomes(string[] nomes)
         
         }
 }
+
+static void NomesOrdemAlfabetica(string[] nomes)
+{
+    // Ordena o array, ignorando elementos nulos
+    for (int i = 0; i < nomes.Length - 1; i++)
+    {
+        for (int j = i + 1; j < nomes.Length; j++)
+        {
+            if (nomes[i] == null || nomes[j] == null)
+                continue;
+
+            // Compare os elementos usando CompareTo
+            if (nomes[i].CompareTo(nomes[j]) > 0)
+            {
+                // Se nome[i] é maior que nome[j], troca de posição
+                string temp = nomes[i];
+                nomes[i] = nomes[j];
+                nomes[j] = temp;
+            }
+        }
+    }
+
+    // Exibe os nomes em ordem alfabética
+    Console.WriteLine("Nomes em ordem alfabética:");
+    for (int i = 0; i < nomes.Length; i++)
+    {
+        if (nomes[i] != null)
+        {
+            Console.WriteLine(nomes[i]);
+        }
+    }
+}
+
