@@ -17,14 +17,12 @@ while (opcao != 5)
     switch (opcao)
     {
         case 1:
-            Console.WriteLine("Essa é o opção 1");
             InserirNome(nomes);
             break;
         case 2:
-            Console.WriteLine("essa é o opção 2");
-            break;
+            InserirNomeIndiceEscolhido(nomes);
+                break;
         case 3:
-            Console.WriteLine("Essa é a opção 3");
             ListarNomes(nomes);
             break;
         case 4:
@@ -43,15 +41,54 @@ static void InserirNome(string[] nomes)
 {
     Console.WriteLine("Informe o nome a ser inserido");
     string nome = Console.ReadLine();
-    
-        nomes [0] += nome;
-    
+    for(int i = 0; i < nomes.Length; i++)
+    {
+        if( nomes[i] == null)
+        {
+            nomes[i] = nome;
+            Console.WriteLine("Nome inserido!");
+            return;
+        }
+        }
+    Console.WriteLine("A lista está cheia! " +
+        "\n Escolha um índice para apagar um nome da lista");
 }
 
+//função inserir nome em local escolhido
+static void InserirNomeIndiceEscolhido(string[] nomes)
+{
+    Console.WriteLine("Informe o índice que quer adicionar o novo nome:");
+    int indice = int.Parse(Console.ReadLine());
+
+    if (indice < 0 || indice >= nomes.Length)
+    {
+        Console.WriteLine("Índice inválido!");
+        return;
+    }
+
+    Console.WriteLine("Informe o nome a ser inserido:");
+    string novoNome = Console.ReadLine();
+
+    for (int i = nomes.Length - 1; i > indice; i--)
+    {
+        nomes[i] = nomes[i - 1];
+    }
+
+    // Inserir o novo nome na posição escolhida
+    nomes[indice] = novoNome;
+
+    //  array atualizado
+    Console.WriteLine("Array atualizado:");
+    for (int i = 0; i < nomes.Length; i++)
+    {
+        Console.WriteLine(nomes[i]);
+    }
+}
 //função listar nomes
 static void ListarNomes(string[] nomes)
 {
-    for (int i = 0;i < nomes.Length;i++) {
+    for (int i = 0; i < nomes.Length; i++) {
         Console.WriteLine(nomes[i]);
-    }
+        
+        }
 }
