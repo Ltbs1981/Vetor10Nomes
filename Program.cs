@@ -1,6 +1,6 @@
 ﻿string[] nomes = new string[10];
 int opcao = 0; 
-while (opcao != 5)
+while (opcao != 6)
 {
 
     Console.WriteLine("Bem vindo a lista de nomes!");
@@ -10,8 +10,9 @@ while (opcao != 5)
         "\n 1-Inserir nome" +
         "\n 2-Inserir nome em ínice específico" +
         "\n 3-Exibir lista de nomes" +
-        "\n 4-Exibir nomes em ordem alfabética" +
-        "\n 5-Sair");
+        "\n 4-Ordenar nomes em ordem alfabética" +
+        "\n 5-Apagar nome da lista"+
+        "\n 6-Sair");
 
     opcao = int.Parse(Console.ReadLine());
     switch (opcao)
@@ -26,11 +27,14 @@ while (opcao != 5)
             ListarNomes(nomes);
             break;
         case 4:
-            //Console.WriteLine("opção 4");
-            NomesOrdemAlfabetica(nomes);
+                        NomesOrdemAlfabetica(nomes);
             break;
         case 5:
-            Console.WriteLine("Obrigado!");
+            Console.WriteLine("opção 5!");
+            ApagarNome(nomes);
+            break;
+       case 6:
+            Console.WriteLine("Fim do programa!!!");
             break;
         default:
             Console.WriteLine("opção inválida, tente novamente!");
@@ -96,7 +100,6 @@ static void ListarNomes(string[] nomes)
 
 static void NomesOrdemAlfabetica(string[] nomes)
 {
-    // Ordena o array, ignorando elementos nulos
     for (int i = 0; i < nomes.Length - 1; i++)
     {
         for (int j = i + 1; j < nomes.Length; j++)
@@ -104,10 +107,10 @@ static void NomesOrdemAlfabetica(string[] nomes)
             if (nomes[i] == null || nomes[j] == null)
                 continue;
 
-            // Compare os elementos usando CompareTo
+            // usando o compareTo
             if (nomes[i].CompareTo(nomes[j]) > 0)
             {
-                // Se nome[i] é maior que nome[j], troca de posição
+                
                 string temp = nomes[i];
                 nomes[i] = nomes[j];
                 nomes[j] = temp;
@@ -126,3 +129,21 @@ static void NomesOrdemAlfabetica(string[] nomes)
     }
 }
 
+static void ApagarNome(string[] nomes)
+{
+    Console.WriteLine("Informe o índice que quer apagar o nome:");
+    int indice = int.Parse(Console.ReadLine());
+
+
+    for (int i = indice; i < nomes.Length - 1; i++)
+    {
+        nomes[i] = nomes[i + 1];
+        Console.WriteLine(nomes[i]);
+    }
+           
+    //Console.WriteLine("Array atualizado:");
+    //for (int i = indice; i < nomes.Length; i++)
+    //{
+        //Console.WriteLine(nomes[indice]);
+    //}
+}
