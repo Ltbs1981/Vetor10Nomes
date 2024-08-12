@@ -1,4 +1,4 @@
-﻿string[] nomes = new string[10];
+﻿string[] nomes = new string[3];
 int opcao = 0; 
 while (opcao != 6)
 {
@@ -30,8 +30,7 @@ while (opcao != 6)
                         NomesOrdemAlfabetica(nomes);
             break;
         case 5:
-            Console.WriteLine("opção 5!");
-            ApagarNome(nomes);
+                        ApagarNome(nomes);
             break;
        case 6:
             Console.WriteLine("Fim do programa!!!");
@@ -94,8 +93,7 @@ static void ListarNomes(string[] nomes)
 {
     for (int i = 0; i < nomes.Length; i++) {
         Console.WriteLine(nomes[i]);
-        
-        }
+                }
 }
 
 static void NomesOrdemAlfabetica(string[] nomes)
@@ -110,9 +108,11 @@ static void NomesOrdemAlfabetica(string[] nomes)
             // usando o compareTo
             if (nomes[i].CompareTo(nomes[j]) > 0)
             {
-                
+                //variavel temporaria para receber os nomes do vetor
                 string temp = nomes[i];
+                //vetor i, recebe vetor j
                 nomes[i] = nomes[j];
+                //vetor j recebe o conteúdo da estring temp
                 nomes[j] = temp;
             }
         }
@@ -134,16 +134,12 @@ static void ApagarNome(string[] nomes)
     Console.WriteLine("Informe o índice que quer apagar o nome:");
     int indice = int.Parse(Console.ReadLine());
 
-
     for (int i = indice; i < nomes.Length - 1; i++)
     {
         nomes[i] = nomes[i + 1];
-        Console.WriteLine(nomes[i]);
     }
-           
-    //Console.WriteLine("Array atualizado:");
-    //for (int i = indice; i < nomes.Length; i++)
-    //{
-        //Console.WriteLine(nomes[indice]);
-    //}
-}
+        nomes[nomes.Length - 1] = null;
+        }
+
+
+            
