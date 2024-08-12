@@ -33,7 +33,7 @@ while (opcao != 6)
                         ApagarNome(nomes);
             break;
        case 6:
-            Console.WriteLine("Fim do programa!!!");
+            Console.WriteLine("Fim"); 
             break;
         default:
             Console.WriteLine("opção inválida, tente novamente!");
@@ -80,20 +80,24 @@ static void InserirNomeIndiceEscolhido(string[] nomes)
 
     // Inserir o novo nome na posição escolhida
     nomes[indice] = novoNome;
-
-    //  array atualizado
-    Console.WriteLine("Array atualizado:");
-    for (int i = 0; i < nomes.Length; i++)
-    {
-        Console.WriteLine(nomes[i]);
     }
-}
+
 //função listar nomes
 static void ListarNomes(string[] nomes)
 {
-    for (int i = 0; i < nomes.Length; i++) {
-        Console.WriteLine(nomes[i]);
-                }
+    if (nomes.Length == 0 || nomes.All(string.IsNullOrEmpty))
+    {
+        Console.WriteLine("A lista de nomes está vazia.");
+        return;
+    }
+
+    for (int i = 0; i < nomes.Length; i++)
+    {
+        if (!string.IsNullOrEmpty(nomes[i]))
+        {
+            Console.WriteLine(nomes[i]);
+        }
+    }
 }
 
 static void NomesOrdemAlfabetica(string[] nomes)
