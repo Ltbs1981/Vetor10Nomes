@@ -43,19 +43,30 @@ while (opcao != 6)
 //função inserir nome
 static void InserirNome(string[] nomes)
 {
-    Console.WriteLine("Informe o nome a ser inserido");
-    string nome = Console.ReadLine();
-    for(int i = 0; i < nomes.Length; i++)
+    // verifica se a lista está cheia
+    bool listaCheia = nomes.All(nome => !string.IsNullOrEmpty(nome));
+
+    if (listaCheia)
     {
-        if( nomes[i] == null)
+        Console.WriteLine("A lista está cheia! " +
+            "\nEscolha um índice para apagar um nome da lista.");
+        return;
+    }
+
+    // Solicita o nome a ser inserido
+    Console.WriteLine("Informe o nome a ser inserido:");
+    string nome = Console.ReadLine();
+
+    // Insere o nome na primeira posição disponível
+    for (int i = 0; i < nomes.Length; i++)
+    {
+        if (string.IsNullOrEmpty(nomes[i]))
         {
             nomes[i] = nome;
             Console.WriteLine("Nome inserido!");
             return;
         }
-        }
-    Console.WriteLine("A lista está cheia! " +
-        "\n Escolha um índice para apagar um nome da lista");
+    }
 }
 
 //função inserir nome em local escolhido
