@@ -53,18 +53,20 @@ static void InserirNome(string[] nomes)
         return;
     }
 
-    // Solicita o nome a ser inserido
+    
     Console.WriteLine("Informe o nome a ser inserido:");
     string nome = Console.ReadLine();
 
-    // Insere o nome na primeira posição disponível
+    // Insere o nome na primeira posição 
     for (int i = 0; i < nomes.Length; i++)
     {
         if (string.IsNullOrEmpty(nomes[i]))
         {
             nomes[i] = nome;
             Console.WriteLine("Nome inserido!");
-            return;
+                        return;
+            System.Threading.Thread.Sleep(1500);
+            Console.Clear(); // Limpa o terminal
         }
     }
 }
@@ -81,17 +83,30 @@ static void InserirNomeIndiceEscolhido(string[] nomes)
         return;
     }
 
-    Console.WriteLine("Informe o nome a ser inserido:");
-    string novoNome = Console.ReadLine();
+    // Se a última posição estiver ocupada, joga para esquerda 
+    if (!string.IsNullOrEmpty(nomes[nomes.Length - 1]))
+    {
+        for (int i = 0; i < nomes.Length - 1; i++)
+        {
+            nomes[i] = nomes[i + 1];
+        }
+        //aqui, usei o mesmo para apagar o último nome 
+        nomes[nomes.Length - 1] = null; 
+    }
 
+    // puxa os nomes para a direita como antes. 
     for (int i = nomes.Length - 1; i > indice; i--)
     {
         nomes[i] = nomes[i - 1];
     }
 
-    // Inserir o novo nome na posição escolhida
+    // Insere o novo nome na posição escolhida
+    Console.WriteLine("Informe o nome a ser inserido:");
+    string novoNome = Console.ReadLine();
     nomes[indice] = novoNome;
-    }
+    Console.WriteLine("Nome inserido no índice desejado!");
+    System.Threading.Thread.Sleep(1000);
+}
 
 //função listar nomes
 static void ListarNomes(string[] nomes)
@@ -107,10 +122,14 @@ static void ListarNomes(string[] nomes)
         if (!string.IsNullOrEmpty(nomes[i]))
         {
             Console.WriteLine(nomes[i]);
+            
         }
     }
+    Console.WriteLine("Pressione qualquer tecla para voltar ao menu...");
+    Console.ReadKey(); // Aguarda o usuário pressionar qualquer tecla
 }
 
+// ordem alfabética dos nomes
 static void NomesOrdemAlfabetica(string[] nomes)
 {
     for (int i = 0; i < nomes.Length - 1; i++)
@@ -132,7 +151,7 @@ static void NomesOrdemAlfabetica(string[] nomes)
             }
         }
     }
-
+    
     // Exibe os nomes em ordem alfabética
     Console.WriteLine("Nomes em ordem alfabética:");
     for (int i = 0; i < nomes.Length; i++)
@@ -142,8 +161,13 @@ static void NomesOrdemAlfabetica(string[] nomes)
             Console.WriteLine(nomes[i]);
         }
     }
+    // Aguarda o usuário pressionar qualquer tecla
+    Console.WriteLine("Pressione qualquer tecla para voltar ao menu...");
+    Console.ReadKey();
+
 }
 
+//função apagar nomes
 static void ApagarNome(string[] nomes)
 {
     Console.WriteLine("Informe o índice que quer apagar o nome:");
@@ -154,7 +178,9 @@ static void ApagarNome(string[] nomes)
         nomes[i] = nomes[i + 1];
     }
         nomes[nomes.Length - 1] = null;
-        }
+    Console.WriteLine("Nome apagado com sucesso!");
+    System.Threading.Thread.Sleep(1500); 
+}
 
 
             
